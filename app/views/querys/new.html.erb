@@ -1,0 +1,12 @@
+<!-- This needs to check for error messages from the controller -->
+<%= form_for :query, url: querys_path do |f| %>
+  <p>
+    <%= f.label :user %><br>
+    <%= f.text_field :user %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+<%= link_to 'Back', querys_path %>

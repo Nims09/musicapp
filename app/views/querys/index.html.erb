@@ -1,0 +1,15 @@
+<h1> Listing Querys </h1>
+<%= link_to 'New query', new_query_path %>
+<table> 
+	<tr>
+		<th>Tweet</th>
+		<th>TweetId</th>		
+	</tr>
+
+	<% @querys.each do |tweet|%>
+		<tr>
+			<td><%= tweet.tweet %></td>
+			<td><%= tweet.tweetId %></td>
+		</tr>
+	<% end %>
+</table>

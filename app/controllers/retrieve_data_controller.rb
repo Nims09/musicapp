@@ -1,0 +1,2 @@
+class RetrieveDataController < ApplicationController
+end
