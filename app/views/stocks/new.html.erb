@@ -1,0 +1,15 @@
+<%= form_for :stock, url: stocks_path do |f| %>
+	<p>
+		<%= f.label :name %>
+		<%= f.text_field :name%>
+	</p>
+
+	<p>
+		<%= f.label :hashtag %>
+		<%= f.text_field :hashtag %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>

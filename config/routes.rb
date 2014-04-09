@@ -1,14 +1,20 @@
 Musicapp::Application.routes.draw do
 
   resources :querys
+  resources :stocks
 
   root 'retrieve_data#index'
 
   # Query controller
   get   '/querys(.:format)'            => 'querys#index'
   get   '/querys/:id(.:format)'        => 'querys#show'
-  get   '/querys(.:format)'            => 'posts#index'
   post  '/querys/new'                  => 'querys#new'
+
+  # Stocks controller
+  get   '/stocks(.:format)'            => 'stocks#index'
+  get   '/stocks/:id(.:format)'        => 'stocks#show'
+  post  '/stocks/new'                  => 'stocks#new'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
