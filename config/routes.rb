@@ -14,6 +14,7 @@ Musicapp::Application.routes.draw do
   get   '/stocks(.:format)'            => 'stocks#index'
   get   '/stocks/:id(.:format)'        => 'stocks#show'
   post  '/stocks/new'                  => 'stocks#new'
+  delete'/stocks/:id(.:format)'        => 'stocks#destory'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
