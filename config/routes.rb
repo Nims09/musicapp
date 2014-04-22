@@ -1,7 +1,9 @@
 Musicapp::Application.routes.draw do
 
   resources :querys
-  resources :stocks
+  resources :stocks do
+    resources :time_deltas
+  end
 
   root 'retrieve_data#index'
 

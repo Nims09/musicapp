@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start: 2014-04-12 13:45:48
+  length: 1
+  stock_id: 
+
+two:
+  start: 2014-04-12 13:45:48
+  length: 1
+  stock_id: 

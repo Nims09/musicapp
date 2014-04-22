@@ -25,6 +25,18 @@ class ApplicationController < ActionController::Base
     return someTweets
   end
 
+  def getTweets(hashtag, start, length) # It's not getting hash tags properly for some reason
+    client = getClient
+    someTweets = []
+    searchHashTag = "+" + hashtag + " -rt"
+
+    client.search(searchHashTag, :result_type => "recent").take(3).collect do |tweet|
+      someTweets.push(tweet)
+    end
+
+    return someTweets
+  end
+
   def renderArray(array)
     prettyJson = JSON.pretty_generate(array)
     render json: prettyJson

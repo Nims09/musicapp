@@ -20,6 +20,7 @@ class StocksController < ApplicationController
 
 	def show
 		@stock = find_stock
+		@time_delta = @stock.time_deltas.build
 	end
 
 	def edit
@@ -44,13 +45,12 @@ class StocksController < ApplicationController
 		redirect_to stocks_path
 	end
 
-
 	private 
 		def stock_params
 			params.require(:stock).permit(:name, :hashtag)
 		end
 
 		def find_stock
-			return Stock.find(params[:id])
-		end
+      return Stock.find(params[:id])
+  	end
 end

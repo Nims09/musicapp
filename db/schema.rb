@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408234427) do
+ActiveRecord::Schema.define(version: 20140416213947) do
+
+  create_table "delta", force: true do |t|
+    t.datetime "start"
+    t.integer  "length"
+    t.integer  "stock_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delta", ["stock_id"], name: "index_delta_on_stock_id"
 
   create_table "queries", force: true do |t|
     t.text     "tweet"
@@ -26,5 +36,15 @@ ActiveRecord::Schema.define(version: 20140408234427) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "time_deltas", force: true do |t|
+    t.datetime "start"
+    t.integer  "length"
+    t.integer  "stock_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "time_deltas", ["stock_id"], name: "index_time_deltas_on_stock_id"
 
 end

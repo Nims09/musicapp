@@ -1,4 +1,4 @@
-<h1> Stock Created </h1>
+<h1> Stock </h1>
 <table> 
 	<tr>
 		<th>Stock</th>
@@ -9,5 +9,36 @@
 			<td><%= @stock.hashtag %></td>
 		</tr>
 </table>
+
+<h3>TimeDeltas: </h2>
+  <table> 
+    <tr>
+      <th>Start</th>
+      <th>Length</th>    
+    </tr>
+
+  <% @stock.time_deltas.each do |time_delta| %>
+    <tr>
+      <td><%= time_delta.start %></td>
+      <td><%= time_delta.length %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Add a TimeDelta:</h2>
+<%= form_for([@stock, @stock.time_deltas.build]) do |f| %>
+  <p>
+    <%= f.label :start %><br>
+    <%= f.text_field :start %>
+  </p>
+  <p>
+    <%= f.label :length %><br>
+    <%= f.text_field :length %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
 <%= link_to 'Back', stocks_path%>
 <%= link_to 'Edit', edit_stock_path(@stock)%>
