@@ -1,3 +1,4 @@
+<!-- Shows the stock-->
 <h1> Stock </h1>
 <table> 
 	<tr>
@@ -10,35 +11,13 @@
 		</tr>
 </table>
 
+<!-- Shows the Time Detlas-->
 <h3>TimeDeltas: </h2>
-  <table> 
-    <tr>
-      <th>Start</th>
-      <th>Length</th>    
-    </tr>
+<%= render @stock.time_deltas %>
 
-  <% @stock.time_deltas.each do |time_delta| %>
-    <tr>
-      <td><%= time_delta.start %></td>
-      <td><%= time_delta.length %></td>
-    </tr>
-  <% end %>
-</table>
-
+<!-- Creates a Time Delta-->
 <h3>Add a TimeDelta:</h2>
-<%= form_for([@stock, @stock.time_deltas.build]) do |f| %>
-  <p>
-    <%= f.label :start %><br>
-    <%= f.text_field :start %>
-  </p>
-  <p>
-    <%= f.label :length %><br>
-    <%= f.text_field :length %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<%= render "time_deltas/form" %>
 
 <%= link_to 'Back', stocks_path%>
 <%= link_to 'Edit', edit_stock_path(@stock)%>

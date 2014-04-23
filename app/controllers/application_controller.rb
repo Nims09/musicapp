@@ -28,9 +28,9 @@ class ApplicationController < ActionController::Base
   def getTweets(hashtag, start, length) # It's not getting hash tags properly for some reason
     client = getClient
     someTweets = []
-    searchHashTag = "+" + hashtag + " -rt"
-
-    client.search(searchHashTag, :result_type => "recent").take(3).collect do |tweet|
+    searchHashTag = "#" + hashtag + " -rt"
+        # It's the :until breaking it !! Don't know why 
+    client.search(searchHashTag, :result_type => "recent", :lang => "en", :until => start).take(5).collect do |tweet|
       someTweets.push(tweet)
     end
 

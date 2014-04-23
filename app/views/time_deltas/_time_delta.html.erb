@@ -1,0 +1,14 @@
+<p>
+	<tr>
+		<td><%= time_delta.start %></td>
+		<td><%= time_delta.length %></td>
+		<td>
+			<%=
+				link_to 'Destroy Time Delta',
+				[time_delta.stock, time_delta],
+				method: :delete,
+				data: { confirm: 'Are you sure?' }
+			%>
+		</td>
+	</tr>
+</p>
