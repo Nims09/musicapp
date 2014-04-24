@@ -29,8 +29,13 @@ class ApplicationController < ActionController::Base
     client = getClient
     someTweets = []
     searchHashTag = "#" + hashtag + " -rt"
-        # It's the :until breaking it !! Don't know why 
-    client.search(searchHashTag, :result_type => "recent", :lang => "en", :until => start).take(5).collect do |tweet|
+
+    client.search(
+      searchHashTag, 
+      :result_type => "recent", 
+      :lang => "en", :since => start, 
+      :until => concatenateDateRange(start,length)
+    )).take(5).collect do |tweet|
       someTweets.push(tweet)
     end
 
@@ -45,4 +50,46 @@ class ApplicationController < ActionController::Base
   def printSomthingToRender(string)
 		render text: string
 	end
+
+  private 
+    def concatenateDateRange(start, length)
+      day   = 2
+      month = 1
+      year  = 0
+      valuesArray = start.split('-')
+
+      # Check we have a correct string
+      if valuesArray.length != 3
+        return "failed"
+      end
+
+      # Increase the last value
+      currentInt = valuesArray[day].to_i
+      currentInt += length
+
+      if currentInt > 31
+        valuesArray[day] = "00"
+        currentInt = valuesArray[month]
+        currentInt++
+
+        if currentInt > 12
+          valuesArray[month] = "00"
+          currentInt = valuesArray[year]
+          valuesArray[year]++
+        else
+          valuesArray[month] = currentInt.to_s
+        end
+      else
+        valuesArray[day] = currentInt.to_s
+      end
+
+      returnString = ""
+      for valuesArray.each do |val|
+        # XXX load the return string
+      end
+
+      return 
+    end
+
+
 end
