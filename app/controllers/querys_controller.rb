@@ -11,7 +11,7 @@ class QuerysController < ApplicationController
 
 	def create
 		# getSomeTweets("twitterApi").each do |tweet|
-		getTweets("goog", "2014-03-23", 0).each do |tweet|
+		getTweets("goog", "2014-04-22", 2).each do |tweet|
 			@query = Query.new(:tweet => tweet["text"], :tweetId => tweet["id"])
 			if !(@query.save)
 				printSomthingToRender("Missing ID on tweet.")

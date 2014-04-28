@@ -25,17 +25,19 @@ class ApplicationController < ActionController::Base
     return someTweets
   end
 
-  def getTweets(hashtag, start, length) # It's not getting hash tags properly for some reason
+  def getTweets(hashtag, start, length) 
     client = getClient
     someTweets = []
     searchHashTag = "#" + hashtag + " -rt"
+    endDate = concatenateDateRange(start, length)
 
     client.search(
       searchHashTag, 
-      :result_type => "recent", 
-      :lang => "en", :since => start, 
-      :until => concatenateDateRange(start,length)
-    )).take(5).collect do |tweet|
+      :result_type => "recent",  
+      :lang => "en", 
+      :since => start,
+      :until =>  endDate,
+    ).take(5).collect do |tweet|
       someTweets.push(tweet)
     end
 
@@ -53,43 +55,56 @@ class ApplicationController < ActionController::Base
 
   private 
     def concatenateDateRange(start, length)
-      day   = 2
-      month = 1
-      year  = 0
       valuesArray = start.split('-')
 
       # Check we have a correct string
       if valuesArray.length != 3
-        return "failed"
+        return "f"
       end
 
-      # Increase the last value
-      currentInt = valuesArray[day].to_i
-      currentInt += length
+      # Continue adding days from the length and validating at each step
+      while length > 0
+        valuesArray[2] = incrementAndReturnAsString(valuesArray[2], 1 )
+        length -= 1
 
-      if currentInt > 31
-        valuesArray[day] = "00"
-        currentInt = valuesArray[month]
-        currentInt++
-
-        if currentInt > 12
-          valuesArray[month] = "00"
-          currentInt = valuesArray[year]
-          valuesArray[year]++
-        else
-          valuesArray[month] = currentInt.to_s
+        # Validate and increase month/year where necessary
+        for count in [1,0]
+          if (!validateDate(arrayToStringAsDate(valuesArray)))
+            valuesArray[count] = incrementAndReturnAsString(valuesArray[count], 1)
+            valuesArray[(count+1)] = "01"
+          end
         end
-      else
-        valuesArray[day] = currentInt.to_s
       end
 
-      returnString = ""
-      for valuesArray.each do |val|
-        # XXX load the return string
-      end
-
-      return 
+      return arrayToStringAsDate(valuesArray)
     end
 
+    def validateDate(date)
+      Date.parse(date)
+      return true
+    rescue
+      return false
+    end
 
+    def arrayToStringAsDate(array)
+      returnString = ""
+      for count in 0..(array.length-1)
+        if count != (array.length-1)
+          returnString += (array[count] + "-")
+        else
+          returnString += array[count]
+        end
+      end
+      return returnString
+    end
+
+    def incrementAndReturnAsString(original, value)
+      originalAsInt = original.to_i
+      originalAsInt += value
+      if originalAsInt < 10
+        return ("0" + originalAsInt.to_s)
+      else
+        return originalAsInt.to_s
+      end
+    end
 end
