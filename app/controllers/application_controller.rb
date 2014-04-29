@@ -25,19 +25,20 @@ class ApplicationController < ActionController::Base
     return someTweets
   end
 
-  def getTweets(hashtag, start, length) 
+  def getTweets(hashtag, startDate, length) 
     client = getClient
     someTweets = []
     searchHashTag = "#" + hashtag + " -rt"
-    endDate = concatenateDateRange(start, length)
+    endDate = concatenateDateRange(startDate.to_s, length)
 
+    # XXX Does this get ALL Tweets or limited?
     client.search(
       searchHashTag, 
       :result_type => "recent",  
       :lang => "en", 
-      :since => start,
+      :since => startDate,
       :until =>  endDate,
-    ).take(5).collect do |tweet|
+    ).collect do |tweet|
       someTweets.push(tweet)
     end
 
