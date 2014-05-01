@@ -12,14 +12,13 @@ class TimeDeltasController < ApplicationController
     tweets.each do |tweet|
       proccessedTweet = processTweet(tweet)
       if proccessedTweet > 0 then
-        tweetRatings[:positiveTweets]  += 1
-        tweetRatings[:finalRating]     += proccessedTweet
+        tweetRatings[:positiveTweets] += 1
       elsif proccessedTweet < 0 then
-          tweetRatings[:negativeTweets]  += 1
-          tweetRatings[:finalRating]     -= proccessedTweet
+        tweetRatings[:negativeTweets] += 1
       else 
-          tweetRatings[:neutralTweets]   += 1
+        tweetRatings[:neutralTweets]  += 1
       end
+      tweetRatings[:finalRating] += proccessedTweet
     end
 
     params['time_delta'][:final]      = tweetRatings[:finalRating]
