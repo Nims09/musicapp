@@ -1,7 +1,11 @@
-<p>
 	<tr>
 		<td><%= time_delta.start %></td>
 		<td><%= time_delta.length %></td>
+		<td><%= time_delta.final %></td>
+		<td><%= time_delta.positive %></td>
+		<td><%= time_delta.negative %></td>
+		<td><%= time_delta.neutral %></td>
+		<td><%= time_delta.total %></td>
 		<td>
 			<%=
 				link_to 'Destroy Time Delta',
@@ -11,4 +15,3 @@
 			%>
 		</td>
 	</tr>
-</p>

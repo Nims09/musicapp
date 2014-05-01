@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416213947) do
+ActiveRecord::Schema.define(version: 20140430185813) do
 
   create_table "delta", force: true do |t|
     t.datetime "start"
@@ -43,6 +43,11 @@ ActiveRecord::Schema.define(version: 20140416213947) do
     t.integer  "stock_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "final"
+    t.integer  "positive"
+    t.integer  "negative"
+    t.integer  "neutral"
+    t.integer  "total"
   end
 
   add_index "time_deltas", ["stock_id"], name: "index_time_deltas_on_stock_id"
