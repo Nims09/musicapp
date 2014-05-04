@@ -2,11 +2,15 @@ class StocksController < ApplicationController
 	http_basic_authenticate_with name: "dhh", password: "sec", except: [:index, :show]
 
 	def new
-		@stock = Stock.new
+		@stock = current_user.stocks.build
 	end
 
 	def index
-		@stocks = Stock.all
+		if current_user
+     @stocks = current_user.stocks
+    else
+     redirect_to new_user_session_path, notice: 'You are not logged in.'
+   end
 	end
 
 	def create
@@ -14,7 +18,7 @@ class StocksController < ApplicationController
 		# they can intiate to nil
 		@stock = Stock.new(stock_params)
 		if @stock.save
-			redirect_to @stock	
+			redirect_to @stock, notice: 'Stock was successfully created.'	
 		else
 			render 'new'
 		end
@@ -49,7 +53,7 @@ class StocksController < ApplicationController
 
 	private 
 		def stock_params
-			params.require(:stock).permit(:name, :hashtag)
+			params.require(:stock).permit(:name, :hashtag, :user_id)
 		end
 
 		def find_stock

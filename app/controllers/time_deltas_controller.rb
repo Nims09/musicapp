@@ -55,9 +55,7 @@ class TimeDeltasController < ApplicationController
       # XXX This needs to be improved the way it processes the tweets, making better
       # better judgment calls on what positive and negative feedback for now it just 
       # uses a bank of 'good' and 'bad' words which don't accuratly reflect 
-
-      # XXX --> should also grab retweet count and the user's follower count (these should)
-      # already be included on the tweet object here      
+    
       feedback = 0
       text = tweet["text"].split(' ')
       retweetCountOffset = tweet["retweet_count"]
@@ -79,7 +77,6 @@ class TimeDeltasController < ApplicationController
         end 
       end
 
-      # XXX The type of the 'final' column may be integer stopping the double digits
       return (feedback * (retweetCountOffset * userFollowersCountOffset))
     end
 end

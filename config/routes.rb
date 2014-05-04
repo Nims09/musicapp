@@ -1,5 +1,6 @@
 Musicapp::Application.routes.draw do
 
+  devise_for :users
   resources :querys
   resources :stocks do
     resources :time_deltas
@@ -17,7 +18,6 @@ Musicapp::Application.routes.draw do
   get   '/stocks/:id(.:format)'        => 'stocks#show'
   post  '/stocks/new'                  => 'stocks#new'
   delete'/stocks/:id(.:format)'        => 'stocks#destory'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

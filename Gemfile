@@ -39,6 +39,11 @@ gem 'oauth'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+		# TODO: Reddit has a saved article about different CSS Bootstraps 
+		# 			use one of them for styling. 
+
+# For authentications
+gem 'devise'
 
 # For debugging
 gem 'debugger'
