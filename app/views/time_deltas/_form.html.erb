@@ -1,13 +1,15 @@
 <%= form_for([@stock, @stock.time_deltas.build]) do |f| %> 
-  <p>
-    <%= f.label :start %><br>
-    <%= f.text_field :start %>
-  </p>
-  <p>
-    <%= f.label :length %><br>
-    <%= f.text_field :length %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+  <div id="new">
+    <div>
+      <%= f.label :start %><br>
+      <%= f.text_field :start %>
+    </div>
+    <div>
+      <%= f.label :length %><br>
+      <%= f.text_field :length %>
+    </div>
+    <div>
+      <%= f.submit 'submit', :class => 'btn btn-primary'%>
+    </div>
+  </div>
 <% end %>

@@ -39,6 +39,8 @@ gem 'oauth'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass', '2.3.2.0'
+gem 'sprockets', '2.11.0'
 		# TODO: Reddit has a saved article about different CSS Bootstraps 
 		# 			use one of them for styling. 
 

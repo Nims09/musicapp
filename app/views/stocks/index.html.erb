@@ -1,5 +1,5 @@
 <h1>Listing Stocks</h1>
-<%= link_to 'New Stock', new_stock_path %>
+<%= link_to 'New Stock', new_stock_path, :class=>"btn btn-primary" %>
 <table>
   <tr>
     <th>Stock</th>
@@ -10,9 +10,14 @@
     <tr>
       <td><%= stock.name %></td>
       <td><%= stock.hashtag %></td>
-      <td><%= link_to 'Show', stock_path(stock) %></td>
-      <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
-      <td><%= link_to 'Destroy', stock_path(stock), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Show', stock_path(stock), :class=>"btn btn-default" %></td>
+      <td><%= link_to 'Edit', edit_stock_path(stock), :class=>"btn btn-default"  %></td>
+      <td><%= link_to 'Destroy', 
+              stock_path(stock), 
+              method: :delete, 
+              data: { confirm: 'Are you sure?' }, 
+              :class => 'btn btn-warning'
+              %></td>
     </tr>
   <% end %>
 </table>

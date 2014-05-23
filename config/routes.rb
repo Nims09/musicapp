@@ -6,7 +6,7 @@ Musicapp::Application.routes.draw do
     resources :time_deltas
   end
 
-  root 'retrieve_data#index'
+  root 'stocks#index'
 
   # Query controller
   get   '/querys(.:format)'            => 'querys#index'
