@@ -13,17 +13,21 @@
 
 <!-- Shows the Time Detlas-->
 <h3>TimeDeltas: </h2>
-<table>	
-	<tr>
-    <th>Start</th>
-    <th>Length</th>
-    <th>Final Rating</th>
-    <th>Positive</th>
-    <th>Negative</th>
-    <th>Neutral</th>
-    <th>Tweets</th>  
-  </tr>
-<%= render @stock.time_deltas %>
+<table class="table table-striped">	
+	<thead>
+		<tr>
+	    <th>Start</th>
+	    <th>Length</th>
+	    <th>Final Rating</th>
+	    <th>Positive</th>
+	    <th>Negative</th>
+	    <th>Neutral</th>
+	    <th>Tweets</th>  
+	  </tr>
+	</thead>
+	<tbody>
+		<%= render @stock.time_deltas %>
+	</tbody>
 </table>
 <!-- Creates a Time Delta-->
 <h3>Add a TimeDelta:</h2>

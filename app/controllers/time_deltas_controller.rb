@@ -1,10 +1,7 @@
 class TimeDeltasController < ApplicationController
-  http_basic_authenticate_with name: "dhh", password: "sec", only: :destroy
   before_filter
 
   def create
-    # XXX Add these columns to the model and populate them
-    # finalRating, positiveTweets, negativeTweets, neutralTweets, totalTweets
     tweetRatings = {:finalRating => 0, :positiveTweets => 0, :negativeTweets => 0, :neutralTweets => 0} 
     @stock = Stock.find(params[:stock_id])
     tweets = getTweets(@stock.hashtag, time_delta_params[:start], time_delta_params[:length].to_i)

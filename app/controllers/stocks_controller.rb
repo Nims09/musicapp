@@ -1,5 +1,4 @@
 class StocksController < ApplicationController
-	http_basic_authenticate_with name: "dhh", password: "sec", except: [:index, :show]
 
 	def new
 		@stock = current_user.stocks.build

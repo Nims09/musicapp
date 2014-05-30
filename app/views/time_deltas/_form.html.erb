@@ -1,15 +1,7 @@
-<%= form_for([@stock, @stock.time_deltas.build]) do |f| %> 
-  <div id="new">
-    <div>
-      <%= f.label :start %><br>
-      <%= f.text_field :start %>
-    </div>
-    <div>
-      <%= f.label :length %><br>
-      <%= f.text_field :length %>
-    </div>
-    <div>
-      <%= f.submit 'submit', :class => 'btn btn-primary'%>
-    </div>
-  </div>
+<%= form_for [@stock, @stock.time_deltas.build], :html => { :class => 'form-inline' } do |f| %>
+  <%= f.label :start%>
+  <%= f.text_field :start, :class=>"input-small"%>
+  <%= f.label :length%>
+  <%= f.text_field :length, :class=>"input-small"%>
+  <%= f.submit 'submit', :class => 'btn btn-primary'%>
 <% end %>
